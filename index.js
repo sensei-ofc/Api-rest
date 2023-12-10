@@ -77,104 +77,71 @@ app.get('/', (req, res) => {
     layout: 'home'
   });
 })
-app.get('/docs', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username, limit} = getkey
+
+app.get('/docs', async(req, res) => {
   res.render('index', {
-    apikey,
-    username,
-    limit,
     layout: 'index'
   });
 })
-app.get('/cecan', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+
+app.get('/cecan', async(req, res) => {
   res.render('cecan', {
-    apikey,
     layout: 'cecan'
   });
 })
 
-app.get('/downloader', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/downloader', async(req, res) => {
   res.render('downloader', {
-    apikey,
     layout: 'downloader'
   });
 })
 
-app.get('/news', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/news', async(req, res) => {
   res.render('news', {
-    apikey,
     layout: 'news'
   });
 })
 
-app.get('/photooxy', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/photooxy', async(req, res) => {
   res.render('photooxy', {
-  apikey,
     layout: 'photooxy'
   });
 })
 
-app.get('/search', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/search', async(req, res) => {
   res.render('search', {
-    apikey,
     layout: 'search'
   });
 })
 
-app.get('/nsfw', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/nsfw', async(req, res) => {
   res.render('nsfw', {
-    apikey,
     layout: 'nsfw'
   });
 })
 
-app.get('/islam', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/islam', async(req, res) => {
   res.render('islam', {
-    apikey,
     layout: 'islam'
   });
 })
 
-app.get('/game', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/game', async(req, res) => {
   res.render('game', {
-    apikey,
     layout: 'game'
   });
 })
 
-app.get('/other', isAuthenticated, async(req, res) => {
-  let getkey = await getApikey(req.user.id)
-  let { apikey, username } = getkey
+app.get('/other', async(req, res) => {
   res.render('other', {
-    apikey,
     layout: 'other'
   });
 })
 
-app.use('/api', apirouter)
-app.use('/users', userrouter)
-
 app.use(function (req, res, next) {
     res.status(404).json({
         status: false,
-        message: "Page not found"
+        message: "Pagina no encontrada"
     })
 })
 
