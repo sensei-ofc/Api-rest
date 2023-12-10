@@ -3,26 +3,24 @@ const {
    User
 } = require('./schema');
 
-async function addUser(username, email, password, apikey) {
+async function addUser(username, email, password) {
    let obj = {
-      username,
+      username: 'sensei',
       email,
       password,
-      apikey,
-      defaultKey: apikey,
       limit: limitCount
    };
    User.create(obj);
 }
 module.exports.addUser = addUser
 
-async function limitAdd(apikey) {
-   let key = await User.findOne({
-      apikey: apikey
+async function limitAdd() {
+   let user = await User.findOne({
+      username: 'sensei'
    });
-   let min = key.limit - 1;
+   let min = user.limit - 1;
    User.updateOne({
-      apikey: apikey
+      username: 'sensei'
    }, {
       limit: min
    }, function (err, res) {
@@ -100,6 +98,6 @@ module.exports.checkLimit = checkLimit;
 
 async function getApikey(id) {
         let users = await User.findOne({_id: id});
-        return {apikey: users.apikey, username: users.username, limit:users.limit};
+        return {apikey: 'Alphabot', username: 'sensei', limit:users.limit};
     }
 module.exports.getApikey = getApikey;
